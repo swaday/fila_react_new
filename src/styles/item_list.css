@@ -1,0 +1,877 @@
+/* =====================================================
+    1. 상단 이벤트 바 (Event Banner)
+   ===================================================== */
+
+.event {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 30px;
+    padding: 6px;
+    background-color: blue;
+    text-align: center;
+}
+
+.event > span {
+    color: white;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1.2vw, 14px);
+    font-weight: 600;
+}
+
+.event > button {
+    position: absolute;
+    right: 20px;
+    border: none;
+    background: unset;
+    color: #000000;
+    /* 18px → 최소 14px, 최대 18px */
+    font-size: clamp(14px, 1.5vw, 18px);
+    text-align: center;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   2-1. Header reset
+   ========================================================================== */
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==========================================================================
+   2-2. header
+   ========================================================================== */
+
+header {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: unset;
+    padding: 10px 40px;
+    z-index: 1000;
+}
+
+header > .home_btn {
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+header > .home_btn > img {
+    width: 60px;
+    height: 60px;
+}
+
+header > nav {
+    z-index: 10;
+}
+
+header > nav > ul {
+    display: flex;
+    gap: 10px;
+}
+
+header > nav > ul > li > .header_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 4px 10px;
+    /* 24px → 최소 18px, 최대 24px */
+    font-size: clamp(18px, 2vw, 24px);
+}
+
+/* ==========================================================================
+   2-3. main_menu
+   ========================================================================== */
+
+header > .main_menu {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    pointer-events: none;
+    transition: background-color 0.3s ease;
+}
+
+header > .main_menu > li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    pointer-events: auto;
+}
+
+header > .main_menu > li > a.menu_link {
+    /* 20px → 최소 16px, 최대 20px */
+    font-size: clamp(16px, 1.5vw, 20px);
+    font-weight: 500;
+    color: #ffffff;
+    padding: 10px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+    cursor: pointer;
+}
+
+header:hover > .main_menu {
+    background-color: #ffffff;
+    pointer-events: auto;
+}
+
+header:hover > .main_menu > li > a.menu_link {
+    color: #000000;
+}
+
+header > .main_menu > li:hover > a.menu_link {
+    color: #999999;
+    border-bottom: 2px solid #999999;
+}
+
+header:hover nav ul li .header_icon {
+    color: #000000;
+}
+
+header:hover .home_btn > img {
+    filter: brightness(0);
+}
+
+/* ==========================================================================
+   2-4. sub_menu
+   ========================================================================== */
+
+.submenu_container {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 50px 40px;
+    z-index: 999;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+}
+
+.submenu_container > div {
+    display: flex;
+}
+
+.submenu_item {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 160px;
+    flex-shrink: 0;
+}
+
+.submenu_title {
+    /* 20px → 최소 15px, 최대 20px */
+    font-size: clamp(15px, 1.5vw, 20px);
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.submenu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.submenu a {
+    /* 16px → 최소 13px, 최대 16px */
+    font-size: clamp(13px, 1.2vw, 16px);
+    color: #666;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+.submenu a:hover {
+    color: #000;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   2-5. 호버 액션
+   ========================================================================== */
+
+header > .main_menu > li:hover .submenu_container {
+    display: flex;
+}
+
+/* =====================================================
+    3. 상품 리스트 상단 (Title & Filter)
+   ===================================================== */
+
+#item_list_header .item_list_title {
+    display: flex;
+    align-items: baseline;
+    margin-top: 200px;
+    background-color: #ffffff;
+}
+
+#item_list_header .item_list_title > h2 {
+    padding: 20px;
+    /* 60px → 최소 28px, 최대 60px */
+    font-size: clamp(28px, 4.5vw, 60px);
+    font-weight: 700;
+}
+
+#item_list_header .item_list_title > span {
+    /* 16px → 최소 13px, 최대 16px */
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 600;
+}
+
+#item_list_header .item_list_tag {
+    display: flex;
+    padding: 0 20px;
+}
+
+#item_list_header .item_list_tag > span {
+    padding: 10px;
+    color: #c1c1c1;
+    /* 20px → 최소 14px, 최대 20px */
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#item_list_header .filter_button_container {
+    display: flex;
+    padding: 20px;
+}
+
+#item_list_header .filter_button_container .filter_button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: 1px solid #000000;
+    border-radius: 50px;
+    background-color: #f8f8f7;
+    color: #000000;
+    /* 16px → 최소 12px, 최대 16px */
+    font-size: clamp(12px, 1.2vw, 16px);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#item_list_header .filter_button_container .filter_button.active {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#item_list_header .filter_button_container .filter_button > i {
+    padding-left: 5px;
+}
+
+/* =====================================================
+    4. 상품 카드 리스트 Grid (Item List)
+   ===================================================== */
+
+#item_list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: min-content;
+    gap: 20px;
+    row-gap: 100px;
+    padding: 20px;
+}
+
+#item_list .item_list_container {
+    position: relative;
+}
+
+#item_list .item_list_container .item_list_detail {
+    display: flex;
+    flex-direction: column;
+}
+
+#item_list .item_list_container .item_list_detail .image_box {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 400px;
+}
+
+#item_list .item_list_container .item_list_detail .image_box > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#item_list .item_list_container .item_list_detail .item_color > img {
+    width: 60px;
+    height: 60px;
+    margin-top: 10px;
+    object-fit: cover;
+}
+
+#item_list .item_list_container .item_list_detail .item_info {
+    padding-top: 10px;
+}
+
+#item_list .item_list_container .item_list_detail .item_info > span {
+    color: #a3a3a3;
+    /* 12px → 최소 10px, 최대 12px */
+    font-size: clamp(10px, 0.9vw, 12px);
+    font-weight: 400;
+}
+
+#item_list .item_list_container .item_list_detail .item_info > p {
+    color: #000000;
+    /* 20px → 최소 14px, 최대 20px */
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 600;
+}
+
+#item_list .item_list_container .item_list_detail .item_info > strong {
+    color: #000000;
+    /* 18px → 최소 13px, 최대 18px */
+    font-size: clamp(13px, 1.3vw, 18px);
+    font-weight: 700;
+}
+
+/* =====================================================
+    4. 상품 카드 리스트 (Hover & Quick Add)
+   ===================================================== */
+
+#item_list .item_list_container .item_list_detail .image_box .quick_add {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    width: 90%;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+    padding: 15px;
+    z-index: 10;
+    transform: translate(-50%, 120%);
+    transition: transform 0.3s ease-out;
+}
+
+#item_list .item_list_container .item_list_detail .image_box:hover .quick_add {
+    transform: translate(-50%, 0);
+}
+
+#item_list .item_list_container .item_list_detail .image_box .quick_add .quick_add_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#item_list .item_list_container .item_list_detail .image_box .quick_add .quick_add_header > span {
+    /* 20px → 최소 14px, 최대 20px */
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 600;
+    color: #fff;
+    padding-bottom: 10px;
+}
+
+#item_list .item_list_container .item_list_detail .image_box .quick_add .quick_add_header > i {
+    /* 20px → 최소 14px, 최대 20px */
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 600;
+    color: #fff;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.quick_add_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 12px → 최소 10px, 최대 12px */
+    font-size: clamp(10px, 0.9vw, 12px);
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.quick_add_size {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 12px;
+    justify-content: center;
+    align-content: center;
+}
+
+.quick_add_size a {
+    flex: 0 0 calc(20% - 12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    /* 16px → 최소 12px, 최대 16px */
+    font-size: clamp(12px, 1.2vw, 16px);
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* =====================================================
+    5. 하단 영역 (Pagination)
+   ===================================================== */
+
+.item_list_page_button {
+    list-style: none;
+    padding: 0;
+    padding-top: 50px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.item_list_page_button a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 500;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.item_list_page_button a.active {
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.item_list_page_button a:hover:not(.active) {
+    background-color: #f0f0f0;
+    color: #000000;
+}
+
+/* ==========================================================================
+   4. 푸터 영역 (Footer)
+   ========================================================================== */
+
+footer {
+    background-color: black;
+    color: #ececec;
+    line-height: 24px;
+    padding: 60px 40px;
+    margin-top: 100px;
+}
+
+footer > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .site_nav {
+    display: flex;
+}
+
+footer .site_nav > div {
+    width: 220px;
+}
+
+footer .site_nav h4 {
+    margin-bottom: 12px;
+    /* 16px → 최소 13px, 최대 16px */
+    font-size: clamp(13px, 1.2vw, 16px);
+    color: #ececec;
+}
+
+footer .site_nav ul {
+    display: flex;
+    flex-direction: column;
+}
+
+footer .site_nav li {
+    margin-bottom: 4px;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    color: #ececec;
+}
+
+footer .site_nav li a {
+    color: #ececec !important;
+    text-decoration: none;
+}
+
+/* SNS 영역 및 아이콘 컬러 픽스 */
+footer .sns_nav ul {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+footer .sns_nav li {
+    margin-right: 12px;
+}
+
+footer .sns_nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: #ececec;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+footer .sns_nav a i {
+    color: #000000 !important;
+    /* 16px → 최소 13px, 최대 16px */
+    font-size: clamp(13px, 1.2vw, 16px);
+}
+
+footer .me_information > div {
+    color: #ececec;
+}
+
+footer hr {
+    margin: 30px 0;
+    border: none;
+    border-top: 1px solid #333;
+}
+
+.corp_information {
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    color: #ececec;
+}
+
+.site_information {
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    text-align: right;
+    color: #ececec;
+}
+
+
+/* ==========================================================================
+   반응형 스타일 (Responsive) - 태블릿 (max-width: 1024px)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    header {
+        padding: 10px 20px;
+    }
+
+    header > .main_menu {
+        gap: 20px;
+    }
+
+    #item_list {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 60px;
+    }
+
+    #item_list .item_list_container .item_list_detail .image_box {
+        height: 420px;
+    }
+}
+
+
+/* ==========================================================================
+   반응형 스타일 (Responsive) - 모바일 (max-width: 768px)
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    header {
+        padding: 10px 20px;
+        top: 30px;
+    }
+
+    header > .main_menu {
+        display: none;
+    }
+
+    header > .home_btn > img {
+        width: 40px;
+        height: 40px;
+    }
+
+    #item_list_header .item_list_title {
+        margin-top: 120px;
+    }
+
+    #item_list_header .filter_button_container {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    #item_list {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 40px;
+        padding: 10px;
+    }
+
+    #item_list .item_list_container .item_list_detail .image_box {
+        height: 280px;
+    }
+
+    footer {
+        padding: 40px 20px;
+    }
+
+    footer > div:first-of-type {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    footer .site_nav {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    footer .site_nav > div {
+        width: 100%;
+    }
+
+    footer .site_nav h4 {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #333;
+        padding-bottom: 8px;
+    }
+
+    footer > div:last-of-type {
+        flex-direction: column;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .corp_information {
+        line-height: 1.8;
+    }
+
+    .corp_information span {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .site_information {
+        text-align: left;
+        color: #999;
+    }
+}
+
+
+/* ==========================================================================
+   반응형 스타일 - 태블릿 (max-width: 1024px)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    /* 헤더 여백 조절 및 메뉴 간격 최적화 */
+    header {
+        padding: 10px 20px;
+    }
+
+    header > .main_menu {
+        gap: 25px; /* 40px에서 축소 */
+    }
+
+    /* 서브메뉴 간격 및 크기 조절 */
+    .submenu_container {
+        gap: 30px;
+        padding: 40px 20px;
+    }
+
+    .submenu_item {
+        width: 140px;
+    }
+
+    /* 상품 리스트 그리드 조정 */
+    #item_list {
+        grid-template-columns: repeat(3, 1fr); /* 4열 -> 3열 */
+        gap: 15px;
+        row-gap: 80px;
+    }
+
+    #item_list .item_list_container .item_list_detail .image_box {
+        height: 480px; /* 태블릿에 맞는 적절한 높이 */
+    }
+
+    /* 퀵 애드 버튼 (태블릿에서는 호버보다 가독성 중시) */
+    #item_list .item_list_container .item_list_detail .image_box .quick_add {
+        width: 95%;
+        padding: 10px;
+    }
+}
+
+/* ==========================================================================
+   반응형 스타일 - 모바일 (max-width: 768px)
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    /* 1. 상단 이벤트바 높이 고정 및 폰트 미세 조정 */
+    .event {
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 2. 헤더 및 네비게이션 처리 */
+    header {
+        padding: 5px 15px;
+        top: 35px; /* 이벤트바 높이에 맞춤 */
+    }
+
+    header > .main_menu {
+        display: none; /* 모바일에서는 햄버거 메뉴로 대체하는 것이 일반적이나, 일단 숨김 처리 */
+    }
+
+    header > nav > ul {
+        gap: 5px;
+    }
+
+    header > .home_btn > img {
+        width: 45px;
+        height: 45px;
+    }
+
+    /* 3. 상품 헤더 영역 */
+    #item_list_header .item_list_title {
+        margin-top: 130px; /* 상단 고정 요소들 고려 */
+        flex-direction: column; /* 제목과 상품수 세로 배치 */
+        align-items: flex-start;
+        padding-left: 10px;
+    }
+
+    #item_list_header .item_list_title > h2 {
+        padding: 10px;
+    }
+
+    #item_list_header .item_list_tag {
+        overflow-x: auto; /* 태그가 많을 경우 가로 스크롤 허용 */
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+    }
+
+    #item_list_header .filter_button_container {
+        padding: 10px;
+        overflow-x: auto; /* 필터 버튼 가로 스크롤 */
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    #item_list_header .filter_button_container .filter_button {
+        flex: 0 0 auto;
+        padding: 8px 16px;
+    }
+
+    /* 4. 상품 리스트 그리드 (가장 중요) */
+    #item_list {
+        grid-template-columns: repeat(2, 1fr); /* 2열 배치 */
+        gap: 10px;
+        row-gap: 50px;
+        padding: 10px;
+    }
+
+    #item_list .item_list_container .item_list_detail .image_box {
+        height: 280px; /* 모바일에서 보기 편한 세로 비율 */
+    }
+
+    /* 5. 모바일 퀵 애드 (터치 환경 고려) */
+    /* 모바일에서는 호버가 없으므로 퀵 애드 스타일을 항상 노출하거나 아이콘으로 대체 권장 */
+    #item_list .item_list_container .item_list_detail .image_box .quick_add {
+        transform: translate(-50%, 0); /* 모바일은 항상 노출 혹은 별도 처리 */
+        bottom: 10px;
+        padding: 8px;
+    }
+
+    .quick_add_size {
+        gap: 8px 5px;
+    }
+
+    .quick_add_size a {
+        padding: 5px 0;
+        font-size: 11px;
+    }
+
+    /* 6. 푸터 정리 */
+    footer {
+        padding: 40px 20px;
+    }
+
+    footer > div:first-of-type {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    footer .site_nav {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    footer .site_nav > div {
+        width: 100%;
+    }
+
+    footer .site_nav h4 {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #333;
+        padding-bottom: 8px;
+    }
+
+    footer .sns_nav ul {
+        justify-content: flex-start;
+        margin-bottom: 20px;
+    }
+
+    footer .me_information {
+        line-height: 1.6;
+    }
+
+    footer > div:last-of-type {
+        flex-direction: column;
+        gap: 20px;
+        text-align: left;
+    }
+
+    .corp_information {
+        line-height: 1.8;
+    }
+
+    .corp_information span {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .site_information {
+        text-align: left;
+        color: #999;
+    }
+}
+
+

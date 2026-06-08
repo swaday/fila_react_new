@@ -1,0 +1,1262 @@
+.tag{
+    border-radius: 32px;
+    border: 1px solid #000;
+    font-size: inherit;
+    padding: 2px 10px;
+}
+
+.accordion{
+    border: 1px solid #000;
+    border-radius: 24px;
+    padding: 12px 24px;
+}
+
+.accordion > .head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 12px;
+}
+
+.accordion > .body{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+}
+
+.arrow_button {
+    color: black;
+    border: 1px solid #afafaf;
+    padding: 14px 40px;
+    border-radius: 50px;
+    background-color: white;
+    cursor: pointer;
+    margin-left: 6px;
+}
+
+.arrow_button .border_none {
+    border: none;
+}
+
+.arrow_button:hover {
+    background-color: #000000;
+    color: white;
+    border-color: transparent;
+}
+
+/**********************************************/
+
+#main{
+    display: flex;
+    height: 100vh;
+    background-color: #efefef;
+}
+
+#main > div{
+    flex: 1;
+    height: 100%;
+    background-color: #F6F6F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main > div > img{
+    width: 500px;
+    height: 500px;
+}
+
+/**********************************************/
+
+#main .information {
+    width: 80%;
+    background-color: #F6F6F6;
+}
+
+#main .information .header{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+#main .information .header .tag{
+    border-radius: 32px;
+    border: 1px solid #7e7e7e;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    padding: 2px 12px;
+    margin-right: 4px;
+}
+
+#main .information .header button{
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    cursor: pointer;
+    border: none;
+}
+
+/* ==========================================================================
+   1. 메인 상품 소개 섹션
+   ========================================================================== */
+
+#main .information .group ul{
+    display: flex;
+    gap: 12px;
+    padding: 0;
+    margin: 12px 0;
+    list-style: none;
+}
+
+#main .information .group li{
+    display: inline-block;
+    list-style: none;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+#main .information .group a{
+    text-decoration: none;
+    display: inline-block;
+    padding-bottom: 4px;
+    border-bottom: 1.2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+#main .information .group a.active {
+    border-bottom-color: black;
+}
+
+#main .information .group li img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    display: block;
+}
+
+#main .information .title{
+    /* 40px → 최소 22px, 최대 40px */
+    font-size: clamp(22px, 3vw, 40px);
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+
+/* ==========================================================================
+   1. 메인 상품 소개 섹션(사이즈 선택)
+   ========================================================================== */
+
+#main .information .accordion_size {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 12px 24px;
+    background-color: #f6f6f6;
+    margin-bottom: 12px;
+}
+
+#main .information .accordion_size > .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    /* 16px → 최소 13px, 최대 16px */
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+#main .information .accordion_size .body {
+    display: none;
+}
+
+#main .information .accordion_size.active .body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 8px;
+    margin-top: 16px;
+}
+
+#main .information .accordion_size.active .fa-caret-down {
+    transform: rotate(180deg);
+}
+
+#main .information .accordion_size .body > button {
+    width: calc(25% - 6px);
+    border-radius: 24px;
+    background-color: transparent;
+    border: 1px solid #d5d5d5;
+    padding: 6px 0;
+    /* 12px → 최소 10px, 최대 12px */
+    font-size: clamp(10px, 0.9vw, 12px);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+#main .information .accordion_size .body > button:hover,
+#main .information .accordion_size .body > button.selected {
+    background-color: #393939;
+    color: #fff;
+    border-color: #393939;
+}
+
+
+/* ==========================================================================
+   1. 메인 상품 소개 섹션(카트에 추가)
+   ========================================================================== */
+
+#main .information .cart {
+    border: none;
+    border-radius: 10px;
+    background-color: #000;
+    color: white;
+    margin-top: 20px;
+    overflow: hidden;
+    transition: background-color 0.2s;
+}
+
+#main .information .cart > button {
+    width: 100%;
+    display: flex;
+    padding: 16px 24px;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    background-color: #000000;
+    color: inherit;
+    cursor: pointer;
+    /* 16px → 최소 13px, 최대 16px */
+    font-size: clamp(13px, 1.2vw, 16px);
+}
+
+#main .information .cart > button b {
+    font-weight: 500;
+}
+
+#main .information .cart > button strong {
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   2. 제품 스펙 섹션
+   ========================================================================== */
+
+#spec .item_detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 80px 40px;
+    align-items: flex-start;
+}
+
+#spec .item_detail .image_container {
+    position: sticky;
+    top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    align-self: flex-start;
+}
+
+#spec .item_detail .image_container > img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+#spec .item_detail .information {
+    padding: 0 20px;
+    min-width: 0;
+}
+
+#spec .item_detail .information .item_detail_info{
+    padding-bottom: 60px;
+}
+
+#spec .item_detail .information > div > p{
+    /* 16px → 최소 13px, 최대 16px */
+    font-size: clamp(13px, 1.2vw, 16px);
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: #4a4a4a;
+}
+
+#spec .item_detail .information > div > i{
+    margin-right: 5px;
+    color: #919191;
+    /* 6px → 최소 5px, 최대 6px (아이콘 불릿, 작게 유지) */
+    font-size: clamp(5px, 0.5vw, 6px);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#spec .item_detail .information > div > span{
+    /* 12px → 최소 10px, 최대 12px */
+    font-size: clamp(10px, 0.9vw, 12px);
+    font-weight: 400;
+    color: #a6a6a6;
+}
+
+
+/* ==========================================================================
+   2. 제품 스펙 섹션(아코디언 메뉴)
+   ========================================================================== */
+
+#spec .accordion_container .accordion {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: transparent;
+}
+
+#spec .accordion_container .accordion > .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 20px 0;
+    margin-bottom: 0;
+}
+
+#spec .accordion_container .accordion > .head b {
+    /* 16px → 최소 13px, 최대 16px */
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 500;
+    color: #111;
+}
+
+#spec .accordion_container .accordion > .head i {
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    color: #999;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+}
+
+#spec .accordion_container .accordion > .body {
+    padding-bottom: 30px;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    line-height: 1.6;
+    color: #666;
+    display: none;
+    overflow: hidden;
+}
+
+#spec .accordion_container .accordion.active > .body {
+    display: block;
+}
+
+#spec .accordion_container .membership ul {
+    margin: 0;
+}
+
+#spec .accordion_container .membership li {
+    margin-bottom: 6px;
+}
+
+#spec .accordion_container .product_information {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#spec .accordion_container .product_information .info_row {
+    display: flex;
+    align-items: flex-start;
+    padding: 4px 0;
+}
+
+#spec .accordion_container .product_information .info_row > span:first-child {
+    flex: 0 0 120px;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 600;
+    color: #222;
+}
+
+#spec .accordion_container .product_information .info_row > span:last-child {
+    flex: 1;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 400;
+    color: #666;
+    line-height: 1.4;
+    word-break: keep-all;
+}
+
+#spec .accordion_container .fit_spec_guide{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#spec .accordion_container .fit_container{
+    display: flex;
+    gap: 20px;
+}
+
+#spec .accordion_container .fit_container .fit_item{
+    border: 1px solid #000;
+    padding: 10px 20px;
+    width: 250px;
+    height: 120px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+#spec .accordion_container .fit_container > div > .fit_style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 600;
+    padding-top: 4px;
+    padding-bottom: 10px;
+}
+
+#spec .accordion_container .fit_container > div > p{
+    text-align: center;
+}
+
+#spec .accordion_container .accordion .head .accordion_button {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    /* 16px → 최소 13px, 최대 16px */
+    font-size: clamp(13px, 1.2vw, 16px);
+    cursor: pointer;
+}
+
+/***************** 게이지바 *****************/
+
+.spec_container {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    padding: 10px 0;
+}
+
+.spec_container .spec {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.spec_container .spec > b {
+    /* 16px → 최소 13px, 최대 16px */
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.spec_container .spec .progress_container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+.spec_container .progress.parent {
+    width: 100%;
+    height: 4px;
+    background-color: #e5e5e5;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.spec_container .progress.child {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #222;
+    border-radius: 10px;
+}
+
+.spec_container .progress.child::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: #222;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+.spec_container .progress_container > div:last-child {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.spec_container .progress_container > div:last-child span {
+    /* 13px → 최소 10px, 최대 13px */
+    font-size: clamp(10px, 1vw, 13px);
+    color: #b0b0b0;
+    font-weight: 400;
+}
+
+.spec_container .spec:nth-child(1) .progress.child { width: 50%; }
+.spec_container .spec:nth-child(1) .progress_container > div:last-child span:nth-child(2) {
+    color: #111;
+    font-weight: 600;
+}
+
+.spec_container .spec:nth-child(2) .progress.child { width: 50%; }
+.spec_container .spec:nth-child(2) .progress_container > div:last-child span:nth-child(2) {
+    color: #111;
+    font-weight: 600;
+}
+
+.spec_container .spec:nth-child(3) .progress.child { width: 0%; }
+.spec_container .spec:nth-child(3) .progress_container > div:last-child span:nth-child(1) {
+    color: #111;
+    font-weight: 600;
+}
+
+
+/**************************************/
+
+#checkpoint .card_container .card{
+    display: inline-block;
+    width: 320px;
+    margin-right: 16px;
+    vertical-align: top;
+}
+
+#checkpoint .card_container .card .image_container{
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+#checkpoint .card_container .card .image_container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ====================================================
+   * 체크포인트
+   ==================================================== */
+
+#checkpoint{
+    background-color: #000;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+#checkpoint .checkpoint_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+#checkpoint .checkpoint_header h2{
+    margin: 0;
+    line-height: 1;
+    /* 26px → 최소 18px, 최대 26px */
+    font-size: clamp(18px, 2vw, 26px);
+    font-weight: 700;
+    color: #fff;
+}
+
+#checkpoint .checkpoint_card_container{
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 0px 0px 0px 30px;
+    overflow: hidden;
+}
+
+#checkpoint .checkpoint_card_container .card{
+    width: 500px;
+    height: 700px;
+}
+
+#checkpoint .checkpoint_card_container .card .image_container{
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+#checkpoint .checkpoint_card_container .card .image_container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#checkpoint .checkpoint_card_container .card .card_content{
+    color: #fff;
+    padding-top: 30px;
+}
+
+#checkpoint .checkpoint_card_container .card .card_content h3{
+    /* 24px → 최소 16px, 최대 24px */
+    font-size: clamp(16px, 1.8vw, 24px);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#checkpoint .checkpoint_card_container .card .card_content p{
+    /* 20px → 최소 14px, 최대 20px */
+    font-size: clamp(14px, 1.5vw, 20px);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color: #c2c2c2;
+}
+
+
+/* ====================================================
+   * 모델컷
+   ==================================================== */
+
+#modelcut{
+    background-color: #000000;
+    padding: 0;
+    height: 1000px;
+    overflow: hidden;
+}
+
+#modelcut .modelcut_header {
+    margin: 30px;
+    line-height: 2.0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#modelcut .modelcut_header h2{
+    /* 26px → 최소 18px, 최대 26px */
+    font-size: clamp(18px, 2vw, 26px);
+    font-weight: 700;
+    color: #fff;
+}
+
+#modelcut .modelcut_header p{
+    /* 20px → 최소 14px, 최대 20px */
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 400;
+    color: #c4c4c4;
+}
+
+#modelcut .modelcut_image{
+    display: flex;
+    gap: 40px;
+    padding: 0px 0px 30px 30px;
+}
+
+#modelcut .modelcut_image img {
+    width: 500px;
+    height: 700px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   리뷰 영역 전체 레이아웃 정돈
+   ========================================================================== */
+
+#review {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+#review h2 {
+    /* 28px → 최소 20px, 최대 28px */
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+
+#review .review_write_button {
+    background-color: #111;
+    color: #fff;
+    border: none;
+    padding: 14px 40px;
+    /* 15px → 최소 12px, 최대 15px */
+    font-size: clamp(12px, 1.1vw, 15px);
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    margin-bottom: 40px;
+}
+
+#review .review_write_button:hover {
+    background-color: #333;
+}
+
+#review hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+}
+
+.photo_review_container .photo_review_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.photo_review_container .photo_review_title h3 {
+    /* 20px → 최소 15px, 최대 20px */
+    font-size: clamp(15px, 1.5vw, 20px);
+    font-weight: 600;
+    color: #111;
+}
+
+.photo_review_container .photo_review_title a {
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    color: #888;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.photo_review_container .photo_review_img_container {
+    position: relative;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+
+.review_item {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.review_item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.review_item:first-child::after {
+    content: "전체보기";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.review_item:first-child:hover::after {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   리뷰 상단 대시보드 (게이지바 & 점수)
+   -------------------------------------------------------------------------- */
+
+#review .review_gauge_container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background-color: #fafafa;
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#review .review_gauge_container .review_grade {
+    flex-shrink: 0;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #e5e5e5;
+    padding-right: 20px;
+}
+
+#review .review_grade_star {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+#review .review_gauge_container .review_grade_star i {
+    color: #002cff;
+    /* 32px → 최소 20px, 최대 32px */
+    font-size: clamp(20px, 2.5vw, 32px);
+}
+
+#review .review_gauge_container .review_grade_star span {
+    /* 36px → 최소 22px, 최대 36px */
+    font-size: clamp(22px, 2.8vw, 36px);
+    font-weight: 800;
+    color: #111;
+}
+
+#review .review_gauge_container p {
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 500;
+    color: #666;
+    margin: 4px 0;
+}
+
+#review .review_gauge_container .emp {
+    color: #111;
+    font-weight: 700;
+}
+
+/* 게이지바 영역 */
+#review .review_guage {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    row-gap: 12px;
+    column-gap: 20px;
+}
+
+#review .review_guage > span {
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 500;
+    color: #555;
+}
+
+#review .review_guage .rating_container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#review .review_guage .progress_bar_bg {
+    flex: 1;
+    height: 8px;
+    background-color: #eaeaea;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+#review .review_guage .progress_bar_fill {
+    height: 100%;
+    background: #111;
+    border-radius: 999px;
+    transition: width 0.5s ease-in-out;
+}
+
+#review .review_guage .rating_text {
+    min-width: 20px;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 600;
+    color: #111;
+    text-align: right;
+}
+
+/* --------------------------------------------------------------------------
+   필터 & 검색 영역
+   -------------------------------------------------------------------------- */
+
+#review .review_filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#review .review_filter_container {
+    display: flex;
+    gap: 24px;
+}
+
+#review .review_filter_container a {
+    /* 15px → 최소 12px, 최대 15px */
+    font-size: clamp(12px, 1.1vw, 15px);
+    color: #888;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+}
+
+#review .review_filter_container a:first-child {
+    color: #111;
+    font-weight: 700;
+}
+
+.review_search_box {
+    display: flex;
+    align-items: center;
+    width: 280px;
+    padding: 10px 14px;
+    border: 1px solid #e1e1e1;
+    border-radius: 6px;
+    background-color: #fff;
+    transition: border-color 0.2s;
+}
+
+.review_search_box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    color: #111;
+}
+
+.review_search_box input::placeholder {
+    color: #bcc0c6;
+}
+
+.review_search_box i {
+    color: #aaa;
+    margin-right: 10px;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+}
+
+.review_search_box:focus-within {
+    border-color: #111;
+}
+
+#review .review_detail_filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+#review .review_detail_filter button {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    padding: 8px 16px;
+    /* 13px → 최소 10px, 최대 13px */
+    font-size: clamp(10px, 1vw, 13px);
+    font-weight: 500;
+    color: #444;
+    cursor: pointer;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+#review .review_detail_filter button:hover {
+    border-color: #111;
+    background-color: #fcfcfcfc;
+}
+
+#review .review_detail_filter i {
+    color: #999;
+    /* 11px → 최소 9px, 최대 11px */
+    font-size: clamp(9px, 0.8vw, 11px);
+}
+
+/* --------------------------------------------------------------------------
+   리뷰 본문 리스트 영역
+   -------------------------------------------------------------------------- */
+
+#review .review_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid #eee;
+}
+
+#review .review_container .review {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#review .review_container .review > span {
+    align-self: flex-start;
+    /* 12px → 최소 10px, 최대 12px */
+    font-size: clamp(10px, 0.9vw, 12px);
+    color: #666;
+    font-weight: 600;
+    background-color: #f0f0f0;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+#review .review .option {
+    /* 13px → 최소 10px, 최대 13px */
+    font-size: clamp(10px, 1vw, 13px);
+    color: #888;
+    margin: 0;
+}
+
+#review .review .review_star {
+    display: flex;
+    gap: 2px;
+    margin: 4px 0;
+}
+
+#review .review .review_star i {
+    color: #ffb800;
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+}
+
+#review .review .review_star p {
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    color: #111;
+    font-weight: 500;
+}
+
+#review .review p {
+    /* 15px → 최소 12px, 최대 15px */
+    font-size: clamp(12px, 1.1vw, 15px);
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+#review .review .warning {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    /* 12px → 최소 10px, 최대 12px */
+    font-size: clamp(10px, 0.9vw, 12px);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+}
+
+#review .review .warning:hover {
+    color: #ff3b30;
+}
+
+#review .review_button {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+#review .review_button > button {
+    background-color: #fff;
+    color: #444;
+    border: 1px solid #e1e1e1;
+    padding: 8px 16px;
+    /* 13px → 최소 10px, 최대 13px */
+    font-size: clamp(10px, 1vw, 13px);
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+#review .review_button > button:hover {
+    border-color: #111;
+    background-color: #111;
+    color: #fff;
+}
+
+#review .review_container .review_writer {
+    flex-shrink: 0;
+    width: 150px;
+    text-align: right;
+    /* 13px → 최소 10px, 최대 13px */
+    font-size: clamp(10px, 1vw, 13px);
+    line-height: 1.8;
+    color: #666;
+    margin-right: 20px;
+}
+
+#review .review_writer .id {
+    /* 14px → 최소 11px, 최대 14px */
+    font-size: clamp(11px, 1vw, 14px);
+    color: #111;
+    font-weight: 600;
+}
+
+#review .review_writer b {
+    font-weight: 500;
+    color: #888;
+}
+
+#review .review_writer .group {
+    color: #111;
+    font-weight: 600;
+    padding-left: 4px;
+}
+
+#review .review_writer .date {
+    display: block;
+    color: #aaa;
+    /* 12px → 최소 10px, 최대 12px */
+    font-size: clamp(10px, 0.9vw, 12px);
+    margin-top: 4px;
+}
+
+
+/* ==========================================================================
+   반응형 (Responsive) - 태블릿 (max-width: 1024px)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    #main {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #main > div {
+        height: 500px;
+    }
+
+    #main > div > img {
+        width: 360px;
+        height: 360px;
+    }
+
+    #main .information {
+        width: 90%;
+        padding: 40px 0;
+    }
+
+    #spec .item_detail {
+        grid-template-columns: 1fr;
+        padding: 40px 20px;
+    }
+
+    #spec .item_detail .image_container {
+        position: static;
+    }
+
+    #review .review_gauge_container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #review .review_gauge_container .review_grade {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 20px;
+    }
+}
+
+
+/* ==========================================================================
+   반응형 (Responsive) - 모바일 (max-width: 768px)
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    #main {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #main > div {
+        height: 400px;
+    }
+
+    #main > div > img {
+        width: 280px;
+        height: 280px;
+    }
+
+    #main .information {
+        width: 95%;
+        padding: 24px 0;
+    }
+
+    #main .information .accordion_size .body > button {
+        width: calc(33.33% - 6px);
+    }
+
+    #spec .item_detail {
+        padding: 20px 16px;
+    }
+
+    #spec .item_detail .image_container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #checkpoint .checkpoint_card_container .card {
+        width: 80vw;
+        height: auto;
+    }
+
+    #modelcut {
+        height: auto;
+    }
+
+    #modelcut .modelcut_image img {
+        width: 80vw;
+        height: auto;
+    }
+
+    #review .review_container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #review .review_container .review_writer {
+        width: 100%;
+        text-align: left;
+        margin-right: 0;
+        border-top: 1px solid #eee;
+        padding-top: 12px;
+    }
+
+    #review .review_gauge_container {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .review_search_box {
+        width: 100%;
+    }
+
+    #review .review_filter {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}

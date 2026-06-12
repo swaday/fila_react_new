@@ -31,52 +31,84 @@ const copyStyles = (source, target) => {
 };
 
 /* ------------------------------------------------------------------
- * NewWindow : window.open + Portal 로 자식을 실제 새 창에 렌더링
+ * ReviewModal : 화면 중앙 모달
  * ------------------------------------------------------------------ */
-function NewWindow({ title = '', features = 'width=620,height=760', onClose, children }) {
-    const [container, setContainer] = useState(null);
-    const winRef = useRef(null);
-
+function ReviewModal({ onClose, children }) {
     useEffect(() => {
-        const win = window.open('', '', features);
-        if (!win) {
-            // 브라우저 팝업 차단 시
-            alert('팝업이 차단되었습니다. 브라우저 팝업 허용 후 다시 시도해주세요.');
-            onClose?.();
-            return;
-        }
-        winRef.current = win;
-        win.document.title = title;
-        copyStyles(window.document, win.document);
-
-        const div = win.document.createElement('div');
-        win.document.body.appendChild(div);
-        setContainer(div);
-
-        // 사용자가 새 창을 직접 닫는 경우
-        const handleBeforeUnload = () => onClose?.();
-        win.addEventListener('beforeunload', handleBeforeUnload);
-
+        const prev = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        const onKey = (e) => { if (e.key === 'Escape') onClose?.(); };
+        document.addEventListener('keydown', onKey);
         return () => {
-            win.removeEventListener('beforeunload', handleBeforeUnload);
-            win.close();
+            document.body.style.overflow = prev;
+            document.removeEventListener('keydown', onKey);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [onClose]);
 
-    if (!container) return null;
-    return createPortal(children, container);
+    return createPortal(
+        <div
+            style={{
+                position: 'fixed', inset: 0,
+                background: 'rgba(0,0,0,0.5)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                zIndex: 9999,
+            }}
+            onClick={(e) => { if (e.target === e.currentTarget) onClose?.(); }}
+        >
+            <div style={{
+                background: '#fff', borderRadius: 12,
+                width: '92%', maxWidth: 600,
+                maxHeight: '90vh', overflowY: 'auto',
+                boxShadow: '0 12px 48px rgba(0,0,0,0.25)',
+                position: 'relative',
+            }}>
+                <button
+                    type="button"
+                    onClick={onClose}
+                    style={{
+                        position: 'absolute', top: 14, right: 16,
+                        background: 'none', border: 'none',
+                        fontSize: 20, cursor: 'pointer', color: '#555',
+                    }}
+                >
+                    <i className="fa-solid fa-xmark"></i>
+                </button>
+                {children}
+            </div>
+        </div>,
+        document.body
+    );
 }
 
 /* ------------------------------------------------------------------
- * ReviewForm : 새 창 내부 리뷰 작성/수정 폼 (자체 인라인 스타일)
+ * 구매지점 목록
  * ------------------------------------------------------------------ */
+const STORE_OPTIONS = [
+    '휠라 스타필드고양점',
+    '휠라 강남점',
+    '휠라 롯데월드몰점',
+    '휠라 현대백화점점',
+    '온라인 공식몰',
+    '직접 입력',
+];
+
 function ReviewForm({ initialData, onSubmit, onCancel }) {
     const isEdit = Boolean(initialData);
     const [author, setAuthor] = useState(initialData?.author ?? '');
     const [option, setOption] = useState(initialData?.option ?? '');
     const [rating, setRating] = useState(initialData?.rating ?? 5);
     const [content, setContent] = useState(initialData?.content ?? '');
+
+    // place: 목록에 없는 값이면 '직접 입력' 모드로 초기화
+    const initPlace = initialData?.place ?? '';
+    const isInitCustom = initPlace !== '' && !STORE_OPTIONS.includes(initPlace);
+    const [selectedStore, setSelectedStore] = useState(
+        isInitCustom ? '직접 입력' : initPlace
+    );
+    const [customPlace, setCustomPlace] = useState(isInitCustom ? initPlace : '');
+
+    const resolvedPlace =
+        selectedStore === '직접 입력' ? customPlace.trim() : selectedStore;
 
     const handleSubmit = () => {
         if (!author.trim() || !content.trim()) {
@@ -85,6 +117,7 @@ function ReviewForm({ initialData, onSubmit, onCancel }) {
         }
         onSubmit({
             author: author.trim(),
+            place: resolvedPlace,
             option: option.trim(),
             rating,
             content: content.trim(),
@@ -96,6 +129,7 @@ function ReviewForm({ initialData, onSubmit, onCancel }) {
         h2: { fontSize: 22, fontWeight: 700, marginBottom: 20 },
         label: { display: 'block', fontSize: 14, fontWeight: 600, margin: '16px 0 6px' },
         input: { width: '100%', boxSizing: 'border-box', padding: '10px 12px', border: '1px solid #ddd', borderRadius: 6, fontSize: 14 },
+        select: { width: '100%', boxSizing: 'border-box', padding: '10px 12px', border: '1px solid #ddd', borderRadius: 6, fontSize: 14, background: '#fff', cursor: 'pointer' },
         textarea: { width: '100%', boxSizing: 'border-box', padding: '10px 12px', border: '1px solid #ddd', borderRadius: 6, fontSize: 14, minHeight: 140, resize: 'vertical' },
         stars: { display: 'flex', gap: 6, fontSize: 26, cursor: 'pointer' },
         btnRow: { display: 'flex', gap: 10, marginTop: 28 },
@@ -115,6 +149,30 @@ function ReviewForm({ initialData, onSubmit, onCancel }) {
                 placeholder="작성자명을 입력하세요"
                 onChange={(e) => setAuthor(e.target.value)}
             />
+
+            <label style={s.label}>구매지점</label>
+            <select
+                style={s.select}
+                value={selectedStore}
+                onChange={(e) => {
+                    setSelectedStore(e.target.value);
+                    if (e.target.value !== '직접 입력') setCustomPlace('');
+                }}
+            >
+                <option value="">구매지점을 선택하세요</option>
+                {STORE_OPTIONS.map((store) => (
+                    <option key={store} value={store}>{store}</option>
+                ))}
+            </select>
+            {selectedStore === '직접 입력' && (
+                <input
+                    style={{ ...s.input, marginTop: 8 }}
+                    type="text"
+                    value={customPlace}
+                    placeholder="구매지점명을 직접 입력하세요"
+                    onChange={(e) => setCustomPlace(e.target.value)}
+                />
+            )}
 
             <label style={s.label}>상품 옵션</label>
             <input
@@ -171,15 +229,21 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
     const [reviews, setReviews] = useState([
         {
             id: 1,
-            author: '휠라 스타필드고양점',
+            author: '홍길동',
+            place: '휠라 스타필드고양점',
             option: 'L(90)',
             rating: 5,
             content: '길이감 적당하고, 흰색 쇼츠 색감이 좋아서 구매.',
             date: '2026. 3. 20.',
+            likes: 0,
+            dislikes: 0,
+            likedByMe: false,
+            dislikedByMe: false,
         },
     ]);
     const [isReviewWindowOpen, setIsReviewWindowOpen] = useState(false);
     const [editingReview, setEditingReview] = useState(null);
+    const [cartPopupOpen, setCartPopupOpen] = useState(false);
 
     const toggleAccordion = (key) => {
         setAccordionOpen((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -210,7 +274,7 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
         } else {
             // Create
             setReviews((prev) => [
-                { id: Date.now(), date: formatToday(), ...data },
+                { id: Date.now(), date: formatToday(), likes: 0, dislikes: 0, likedByMe: false, dislikedByMe: false, ...data },
                 ...prev,
             ]);
         }
@@ -221,6 +285,26 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
         if (window.confirm('리뷰를 삭제하시겠습니까?')) {
             setReviews((prev) => prev.filter((r) => r.id !== id));
         }
+    };
+
+    /* ─── 좋아요 / 싫어요 ─────────────────────────────────────────── */
+    const handleLike = (id) => {
+        setReviews((prev) => prev.map((r) => {
+            if (r.id !== id) return r;
+            if (r.likedByMe) return { ...r, likes: r.likes - 1, likedByMe: false };
+            return { ...r, likes: r.likes + 1, likedByMe: true,
+                dislikes: r.dislikedByMe ? r.dislikes - 1 : r.dislikes,
+                dislikedByMe: false };
+        }));
+    };
+    const handleDislike = (id) => {
+        setReviews((prev) => prev.map((r) => {
+            if (r.id !== id) return r;
+            if (r.dislikedByMe) return { ...r, dislikes: r.dislikes - 1, dislikedByMe: false };
+            return { ...r, dislikes: r.dislikes + 1, dislikedByMe: true,
+                likes: r.likedByMe ? r.likes - 1 : r.likes,
+                likedByMe: false };
+        }));
     };
 
     /* ----------------------- 리뷰 요약 계산 ----------------------- */
@@ -308,7 +392,7 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
                                     quantity: 1,
                                     checked: true,
                                 });
-                                alert('장바구니에 추가되었습니다.');
+                                setCartPopupOpen(true);
                             }}>
                                 <b>카트에 추가</b>
                                 <strong>79,900원</strong>
@@ -563,7 +647,12 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
                 {reviews.map((review) => (
                     <div className="review_container" key={review.id}>
                         <div className="review">
-                            <span>{review.author}</span>
+                            {/*<span>{review.author}</span>*/}
+                            {review.place && (
+                                <span style={{fontSize: 13, color: '#888' }}>
+                                    구매지점: {review.place}
+                                </span>
+                            )}
                             <p className="option">상품 옵션 {review.option}</p>
                             <div className="review_star">
                                 {[1, 2, 3, 4, 5].map((i) => (
@@ -580,8 +669,32 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
                                 <span>신고 및 차단</span>
                             </button>
                             <div className="review_button">
-                                <button type="button"><i className="fa-regular fa-thumbs-up"></i><span>도움돼요</span></button>
-                                <button type="button"><i className="fa-regular fa-thumbs-down"></i><span>도움안돼요</span></button>
+                                <button
+                                    type="button"
+                                    onClick={() => handleLike(review.id)}
+                                    style={{
+                                        color: review.likedByMe ? '#1565c0' : undefined,
+                                        fontWeight: review.likedByMe ? 700 : undefined,
+                                        background: review.likedByMe ? '#e3f0ff' : undefined,
+                                        borderRadius: 6, transition: 'all 0.15s',
+                                    }}
+                                >
+                                    <i className={review.likedByMe ? 'fa-solid fa-thumbs-up' : 'fa-regular fa-thumbs-up'}></i>
+                                    <span>도움돼요{review.likes > 0 ? ` ${review.likes}` : ''}</span>
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => handleDislike(review.id)}
+                                    style={{
+                                        color: review.dislikedByMe ? '#b71c1c' : undefined,
+                                        fontWeight: review.dislikedByMe ? 700 : undefined,
+                                        background: review.dislikedByMe ? '#fff0f0' : undefined,
+                                        borderRadius: 6, transition: 'all 0.15s',
+                                    }}
+                                >
+                                    <i className={review.dislikedByMe ? 'fa-solid fa-thumbs-down' : 'fa-regular fa-thumbs-down'}></i>
+                                    <span>도움안돼요{review.dislikes > 0 ? ` ${review.dislikes}` : ''}</span>
+                                </button>
                                 <button type="button"><span>댓글</span><i className="fa-solid fa-angle-down"></i></button>
                                 {/* 수정 / 삭제 (Update / Delete) */}
                                 <button type="button" onClick={() => openEditWindow(review)}>
@@ -594,6 +707,9 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
                         </div>
                         <div className="review_writer">
                             <span className="id">{review.author}</span><br />
+                            {review.place && (
+                                <><span className="place">{review.place}</span><br /></>
+                            )}
                             <b>작성자 등급</b><span className="group">회원</span><br />
                             <span className="date">{review.date}</span>
                         </div>
@@ -601,18 +717,103 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
                 ))}
             </section>
 
-            {/* 새 창 리뷰 작성/수정 폼 */}
-            {isReviewWindowOpen && (
-                <NewWindow
-                    title={editingReview ? '리뷰 수정' : '리뷰 작성하기'}
-                    onClose={closeReviewWindow}
+            {/* 장바구니 추가 팝업 */}
+            {cartPopupOpen && createPortal(
+                <div
+                    style={{
+                        position: 'fixed', inset: 0,
+                        background: 'rgba(0,0,0,0.45)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        zIndex: 9999,
+                    }}
+                    onClick={() => setCartPopupOpen(false)}
                 >
+                    <div
+                        style={{
+                            background: '#fff',
+                            borderRadius: 14,
+                            width: '90%',
+                            maxWidth: 400,
+                            boxShadow: '0 16px 56px rgba(0,0,0,0.22)',
+                            overflow: 'hidden',
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* 팝업 헤더 */}
+                        <div style={{
+                            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                            padding: '18px 20px 14px',
+                            borderBottom: '1px solid #f0f0f0',
+                        }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                <i className="fa-solid fa-circle-check" style={{ color: '#111', fontSize: 18 }}></i>
+                                <span style={{ fontWeight: 700, fontSize: 16 }}>장바구니에 추가되었습니다</span>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setCartPopupOpen(false)}
+                                style={{ background: 'none', border: 'none', fontSize: 18, cursor: 'pointer', color: '#888', lineHeight: 1 }}
+                            >
+                                <i className="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+
+                        {/* 상품 정보 */}
+                        <div style={{ display: 'flex', gap: 14, padding: '18px 20px' }}>
+                            <img
+                                src="./image/detail_shorts1.webp"
+                                alt="상품 이미지"
+                                style={{ width: 72, height: 72, objectFit: 'cover', borderRadius: 8, border: '1px solid #eee', flexShrink: 0 }}
+                            />
+                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 4 }}>
+                                <span style={{ fontSize: 13, color: '#888', fontWeight: 600, lineHeight: 1.4 }}>FILA</span>
+                                <span style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.4 }}>테니스 Coldwave+ 베이직 7인치 쇼츠</span>
+                                <span style={{ fontSize: 13, color: '#666', lineHeight: 1.4 }}>옵션: {selectedSize}</span>
+                                <span style={{ fontSize: 15, fontWeight: 700, marginTop: 2 }}>79,900원</span>
+                            </div>
+                        </div>
+
+                        {/* 버튼 영역 */}
+                        <div style={{ display: 'flex', gap: 10, padding: '0 20px 20px' }}>
+                            <button
+                                type="button"
+                                onClick={() => setCartPopupOpen(false)}
+                                style={{
+                                    flex: 1, padding: '13px 0',
+                                    border: '1px solid #ccc', borderRadius: 8,
+                                    background: '#fff', color: '#333',
+                                    fontSize: 14, fontWeight: 600, cursor: 'pointer',
+                                }}
+                            >
+                                계속 쇼핑하기
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => { setCartPopupOpen(false); setCurrentPage('cart'); }}
+                                style={{
+                                    flex: 1, padding: '13px 0',
+                                    border: 'none', borderRadius: 8,
+                                    background: '#111', color: '#fff',
+                                    fontSize: 14, fontWeight: 700, cursor: 'pointer',
+                                }}
+                            >
+                                장바구니 보기
+                            </button>
+                        </div>
+                    </div>
+                </div>,
+                document.body
+            )}
+
+            {/* 화면 중앙 모달 */}
+            {isReviewWindowOpen && (
+                <ReviewModal onClose={closeReviewWindow}>
                     <ReviewForm
                         initialData={editingReview}
                         onSubmit={handleSubmitReview}
                         onCancel={closeReviewWindow}
                     />
-                </NewWindow>
+                </ReviewModal>
             )}
             <Footer/>
         </>

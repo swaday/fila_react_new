@@ -480,13 +480,6 @@ main .trending_section .trending_section_items button:hover {
     overflow: hidden;
 }
 
-.trending_section .image_container img {
-    transition: transform 0.5s ease;
-}
-
-.trending_section .product_list li:hover img {
-    transform: scale(1.05);
-}
 
 
 /* 필라 에디트 섹션 (Fila Edit) */
@@ -737,8 +730,11 @@ main .trending_section .trending_section_items button:hover {
     height: 100%;
     margin: 0;
     padding: 0;
-    will-change: transform; /* 애니메이션 최적화 */
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* 부드러운 가속도 효과 */
+    transition: transform 0.4s ease;
+}
+
+.collection_section .collection_section_item a:hover {
+    transform: none;
 }
 
 .collection_section .collection_section_item > a {
@@ -748,17 +744,36 @@ main .trending_section .trending_section_items button:hover {
     flex: 0 0 1200px;
     max-width: 90vw;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: relative; /* 자식(::before)의 기준점 */
     text-decoration: none;
     padding: 0 0 40px 40px;
     box-sizing: border-box;
+    overflow: hidden; /* 이게 있으면 ::before는 절대 밖으로 못 나감 */
 
-    /* [기존 변경] 기본 상태는 어둡고 글자도 약간 투명하게 */
+    /* 초기 상태 */
     filter: brightness(0.5);
     opacity: 0.6;
-    transition: filter 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+.collection_section .collection_section_item > a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+
+    /* 핵심: 여기서만 애니메이션 적용 */
+    transition: transform 0.6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+}
+
+.collection_section .collection_section_item > a:hover::before {
+    transform: scale(1.1); /* 더 부드러운 확대를 위해 1.1 추천 */
 }
 
 .collection_section .collection_section_item > a.active {
@@ -954,6 +969,18 @@ footer {
     color: #ececec;
     line-height: 1.6;
     padding: 56px 48px 40px;
+}
+
+.site_nav ul li a {
+    text-decoration: none; /* 기본 밑줄 제거 */
+    color: #333;
+    transition: text-decoration 0.3s ease;
+}
+
+.site_nav ul li a:hover {
+    text-decoration: underline;
+    text-underline-offset: 6px; /* 글자와 밑줄 사이 간격 */
+    text-decoration-thickness: 1px; /* 밑줄 두께 */
 }
 
 /* 상단: 네비 + SNS·연락처 */

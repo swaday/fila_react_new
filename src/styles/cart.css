@@ -2,7 +2,7 @@
    CSS 커스텀 속성 (디자인 토큰)
    ============================================ */
 :root {
-    --color-black:       #0a0a0a;
+    --color-black: #000000;
     --color-white:       #ffffff;
     --color-gray-50:     #f8f8f7;
     --color-gray-100:    #f0efed;
@@ -21,6 +21,34 @@
     --radius-lg: 12px;
 
     --transition: 0.18s ease;
+}
+
+.common-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--color-gray-400); /* 테두리 색상 통일 */
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition, 0.2s) ease;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.common-checkbox:checked {
+    background-color: var(--color-black); /* 체크 시 검정색 */
+    border-color: var(--color-black);
+}
+
+.common-checkbox:checked::after {
+    content: "✓";
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 /* ============================================
@@ -219,36 +247,7 @@
     user-select: none;
 }
 
-.check_label input[type="checkbox"] {
-    display: none;
-}
-
-.checkmark {
-    width: 17px;
-    height: 17px;
-    border: 1.5px solid var(--color-gray-400);
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all var(--transition);
-}
-
-.check_label input:checked + .checkmark {
-    background-color: var(--color-black);
-    border-color: var(--color-black);
-}
-
-.check_label input:checked + .checkmark::after {
-    content: '';
-    width: 9px;
-    height: 5px;
-    border-left: 2px solid white;
-    border-bottom: 2px solid white;
-    transform: rotate(-45deg) translateY(-1px);
-    display: block;
-}
+/* .checkmark span은 더 이상 사용하지 않음 — common-checkbox로 통일 */
 
 /* ============================================
    상품 카드
@@ -602,9 +601,10 @@
 /* 패널 컨테이너 */
 .option_panel {
     border: 1px solid #e8e8e8;
-    border-top: 2px solid #1a1a1a;
+    border: none;
     background-color: #fff;
-    animation: panelSlideDown 0.2s ease;
+    /*transition: transform 0.4s ease, opacity 0.4s ease;*/
+    animation: panelSlideDown 1s ease;
 }
 
 @keyframes panelSlideDown {

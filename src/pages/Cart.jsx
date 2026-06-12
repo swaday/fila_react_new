@@ -134,8 +134,11 @@ function Cart({ items, onDelete, onToggleCheck, onUpdateItem }) {
                     <div className="cart_info_container">
                         <div className="cart_body_title_wrap">
                             <label className="check_label">
-                                <input type="checkbox" checked={allChecked} onChange={handleAllCheck} />
-                                <span className="checkmark"></span>
+                                <input
+                                    type="checkbox"
+                                    className="common-checkbox"
+                                    checked={allChecked}
+                                    onChange={handleAllCheck} />
                                 전체 선택
                             </label>
                             <button type="button" className="text_btn">선택 삭제</button>
@@ -151,8 +154,7 @@ function Cart({ items, onDelete, onToggleCheck, onUpdateItem }) {
                                 <div key={item.id} className="cart_item_wrapper">
                                     <article className={`cart_body_item${openPanelId === item.id ? ' panel_open' : ''}`}>
                                         <label className="check_label item_check">
-                                            <input type="checkbox" checked={item.checked} onChange={() => onToggleCheck(item.id)} />
-                                            <span className="checkmark"></span>
+                                            <input type="checkbox" className="common-checkbox" checked={item.checked} onChange={() => onToggleCheck(item.id)} />
                                         </label>
 
                                         <div className="cart_body_image_container">

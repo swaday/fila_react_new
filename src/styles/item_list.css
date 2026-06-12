@@ -260,6 +260,10 @@ header > .main_menu > li:hover .submenu_container {
     cursor: pointer;
 }
 
+#item_list_header .item_list_tag > span:hover {
+    color: #000000;
+}
+
 #item_list_header .filter_button_container {
     display: flex;
     padding: 20px;
@@ -276,6 +280,10 @@ header > .main_menu > li:hover .submenu_container {
     font-size: clamp(12px, 1.2vw, 16px);
     font-weight: 600;
     cursor: pointer;
+}
+
+#item_list_header .filter_button_container .filter_button:hover {
+    background-color: #f0f0f0;
 }
 
 #item_list_header .filter_button_container .filter_button.active {
@@ -327,7 +335,7 @@ header > .main_menu > li:hover .submenu_container {
     height: 60px;
     margin-top: 10px;
     object-fit: cover;
-    gap: 10px;
+    margin-right: 8px;
 }
 
 #item_list .item_list_container .item_list_detail .item_info {
@@ -781,6 +789,18 @@ footer hr {
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 10px;
+        /*background-color: red;*/
+    }
+
+    #item_list_header .item_list_tag span {
+        display: inline-block !important;
+        padding: 10px !important;
+        color: #c1c1c1 !important; /* 기본 색상 강제 */
+        transition: color 0.2s !important;
+    }
+
+    #item_list_header .item_list_tag span:hover {
+        color: #000000 !important;
     }
 
     #item_list_header .filter_button_container {
@@ -795,7 +815,12 @@ footer hr {
         padding: 8px 16px;
     }
 
-    /* 4. 상품 리스트 그리드 (가장 중요) */
+    #item_list_header .filter_button_container .filter_button:hover {
+        background-color: #f0f0f0;
+    }
+
+
+        /* 4. 상품 리스트 그리드 (가장 중요) */
     #item_list {
         grid-template-columns: repeat(2, 1fr); /* 2열 배치 */
         gap: 10px;

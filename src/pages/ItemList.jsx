@@ -13,8 +13,8 @@ const products = [
         image: './image/item_list_coldwave_basic_shorts_white.jpg',
         colors: [
             { src: './image/item_list_coldwave_basic_shorts_white.jpg', alt: '화이트' },
-            { src: './image/item_list_coldwave_basic_shorts2_black.jpg', alt: '블랙' },
-            { src: './image/item_list_coldwave_basic_shorts3_sora.jpg', alt: '소라' },
+            { src: './image/detail_short2.webp', alt: '블랙' },
+            { src: './image/detail_short3.webp', alt: '소라' },
         ],
         sizes: ['M(085)', 'L(090)', 'XL(095)', '2XL(100)'],
     },

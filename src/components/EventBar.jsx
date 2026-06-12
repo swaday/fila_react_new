@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-function EventBar() {
-    const [showEvent, setShowEvent] = useState(true);
+function EventBar({ showEvent, setShowEvent }) {
     if (!showEvent) return null;
 
     return (
@@ -13,5 +12,4 @@ function EventBar() {
         </div>
     );
 }
-
 export default EventBar;

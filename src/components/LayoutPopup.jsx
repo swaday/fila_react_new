@@ -9,7 +9,7 @@ function LayoutPopup({ onClose, onAddToCart }) {
             option: 'CHOCO / ONE SIZE',
             price: 119000,
             quantity: 1,
-            image: '/image/item1.webp',
+            image: './image/item1.webp',
             checked: true
         };
         onAddToCart(popupItem);
@@ -20,7 +20,7 @@ function LayoutPopup({ onClose, onAddToCart }) {
         <div className="modal_container active" onClick={(e) => { if (e.target.classList.contains('modal_container')) onClose(); }}>
             <div className="modal">
                 <section className="image_section">
-                    <img src="/image/banner_half_2.webp" alt="팝업 배너" />
+                    <img src="./image/banner_half_2.webp" alt="팝업 배너" />
                 </section>
                 <section className="form_section">
                     <div className="select_container">
@@ -38,7 +38,7 @@ function LayoutPopup({ onClose, onAddToCart }) {
                                 <div className="product_item">
                                     <input type="checkbox" id="product1" defaultChecked />
                                     <label htmlFor="product1">
-                                        <img src="/image/item1.webp" alt="에샤페 벨크로 메리제인 초코" />
+                                        <img src="./image/item1.webp" alt="에샤페 벨크로 메리제인 초코" />
                                         <b>에샤페 벨크로 메리제인 초코</b>
                                         <span>BROWN,BROWN,BROWN</span>
                                         <strong>99,900원</strong>
@@ -53,7 +53,7 @@ function LayoutPopup({ onClose, onAddToCart }) {
                                 <div className="product_item">
                                     <input type="checkbox" id="product2" defaultChecked />
                                     <label htmlFor="product2">
-                                        <img src="/image/item2.webp" alt="에샤페 실버문" />
+                                        <img src="./image/item2.webp" alt="에샤페 실버문" />
                                         <b>에샤페 실버문</b>
                                         <span>Grey, White, White</span>
                                         <strong>109,000원</strong>

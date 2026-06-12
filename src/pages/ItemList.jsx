@@ -10,11 +10,11 @@ const products = [
         gender: '남성',
         name: '테니스 Coldwave+ 베이직 7인치 쇼츠',
         price: '79,900원',
-        image: '/image/item_list_coldwave_basic_shorts_white.jpg',
+        image: './image/item_list_coldwave_basic_shorts_white.jpg',
         colors: [
-            { src: '/image/item_list_coldwave_basic_shorts_white.jpg', alt: '화이트' },
-            { src: '/image/item_list_coldwave_basic_shorts_black.jpg', alt: '블랙' },
-            { src: '/image/item_list_coldwave_basic_shorts_sora.jpg', alt: '소라' },
+            { src: './image/item_list_coldwave_basic_shorts_white.jpg', alt: '화이트' },
+            { src: './image/item_list_coldwave_basic_shorts2_black.jpg', alt: '블랙' },
+            { src: './image/item_list_coldwave_basic_shorts3_sora.jpg', alt: '소라' },
         ],
         sizes: ['M(085)', 'L(090)', 'XL(095)', '2XL(100)'],
     },
@@ -23,9 +23,9 @@ const products = [
         gender: '남성',
         name: '테니스 Coldwave 카라티',
         price: '109,000원',
-        image: '/image/item_list_coldwave_tshirt_white.jpg',
+        image: './image/item_list_coldwave_tshirt_white.jpg',
         colors: [
-            { src: '/image/item_list_coldwave_tshirt_white.jpg', alt: '화이트' },
+            { src: './image/item_list_coldwave_tshirt_white.jpg', alt: '화이트' },
         ],
         sizes: ['M(085)', 'L(090)', 'XL(095)', '2XL(100)'],
     },
@@ -34,9 +34,10 @@ const products = [
         gender: '남성',
         name: '휠라 몬도 포르자 T7 2.0',
         price: '139,000원',
-        image: '/image/item_list_mondo_porza_white.jpg',
+        image: './image/item_list_mondo_porza_white.jpg',
         colors: [
-            { src: '/image/item_list_mondo_porza_black.jpg', alt: '블랙' },
+            { src: './image/item_list_mondo_porza_white.jpg', alt: '화이트' },
+            { src: './image/item_list_mondo_porza_black.jpg', alt: '블랙' },
         ],
         sizes: ['230', '235', '240', '245', '250', '255', '260', '265', '270', '275', '280', '285', '290'],
     },
@@ -45,9 +46,10 @@ const products = [
         gender: '남성',
         name: '휠라 몬도 포르자 T7 2.0',
         price: '139,000원',
-        image: '/image/item_list_mondo_porza_black.jpg',
+        image: './image/item_list_mondo_porza_black.jpg',
         colors: [
-            { src: '/image/item_list_mondo_porza_white.jpg', alt: '화이트' },
+            { src: './image/item_list_mondo_porza_black.jpg', alt: '블랙' },
+            { src: './image/item_list_mondo_porza_white.jpg', alt: '화이트' },
         ],
         sizes: ['230', '235', '240', '245', '250', '255', '260', '265', '270', '275', '280', '285', '290'],
     },
@@ -56,9 +58,10 @@ const products = [
         gender: '여성',
         name: '테니스 여성 골지 크롭 카라 반팔티',
         price: '69,900원',
-        image: '/image/item_list_crop_tshirt_white.jpg',
+        image: './image/item_list_crop_tshirt_white.jpg',
         colors: [
-            { src: '/image/item_list_crop_tshirt_navy.jpg', alt: '네이비' },
+            { src: './image/item_list_crop_tshirt_white.jpg', alt: '화이트' },
+            { src: './image/item_list_crop_tshirt_navy.jpg', alt: '네이비' },
         ],
         sizes: ['WS(W85)', 'WM(W90)', 'WL(W95)'],
     },
@@ -67,9 +70,10 @@ const products = [
         gender: '여성',
         name: '테니스 여성 골지 크롭 카라 반팔티',
         price: '69,900원',
-        image: '/image/item_list_crop_tshirt_navy.jpg',
+        image: './image/item_list_crop_tshirt_navy.jpg',
         colors: [
-            { src: '/image/item_list_crop_tshirt_white.jpg', alt: '화이트' },
+            { src: './image/item_list_crop_tshirt_navy.jpg', alt: '네이비' },
+            { src: './image/item_list_crop_tshirt_white.jpg', alt: '화이트' },
         ],
         sizes: ['WS(W85)', 'WM(W90)', 'WL(W95)'],
     },
@@ -78,9 +82,10 @@ const products = [
         gender: '여성',
         name: '테니스 소로나 카라 원피스',
         price: '109,000원',
-        image: '/image/item_list_sorona_onepiece_navy.jpg',
+        image: './image/item_list_sorona_onepiece_navy.jpg',
         colors: [
-            { src: '/image/item_list_sorona_onepiece_white.jpg', alt: '화이트' },
+            { src: './image/item_list_sorona_onepiece_navy.jpg', alt: '네이비' },
+            { src: './image/item_list_sorona_onepiece_white.jpg', alt: '화이트' },
         ],
         sizes: ['WXS(W80)', 'WS(W85)', 'WM(W90)', 'WL(W95)'],
     },
@@ -89,9 +94,10 @@ const products = [
         gender: '여성',
         name: '테니스 소로나 카라 원피스',
         price: '109,000원',
-        image: '/image/item_list_sorona_onepiece_white.jpg',
+        image: './image/item_list_sorona_onepiece_white.jpg',
         colors: [
-            { src: '/image/item_list_sorona_onepiece_navy.jpg', alt: '네이비' },
+            { src: './image/item_list_sorona_onepiece_white.jpg', alt: '화이트' },
+            { src: './image/item_list_sorona_onepiece_navy.jpg', alt: '네이비' },
         ],
         sizes: ['WXS(W80)', 'WS(W85)', 'WM(W90)', 'WL(W95)'],
     },
@@ -100,10 +106,10 @@ const products = [
         gender: '여성',
         name: '테니스 파워넷 게더 원피스',
         price: '139,000원',
-        image: '/image/item_list_powernet_onepiece_black.jpg',
+        image: './image/item_list_powernet_onepiece_black.jpg',
         colors: [
-            { src: '/image/item_list_powernet_onepiece_black.jpg', alt: '블랙' },
-            { src: '/image/item_list_powernet_onepiece_white.jpg', alt: '화이트' },
+            { src: './image/item_list_powernet_onepiece_black.jpg', alt: '블랙' },
+            { src: './image/item_list_powernet_onepiece_white.jpg', alt: '화이트' },
         ],
         sizes: ['WXS(W80)', 'WS(W85)', 'WM(W90)', 'WL(W95)'],
     },
@@ -112,10 +118,10 @@ const products = [
         gender: '여성',
         name: '테니스 파워넷 게더 원피스',
         price: '139,000원',
-        image: '/image/item_list_powernet_onepiece_white.jpg',
+        image: './image/item_list_powernet_onepiece_white.jpg',
         colors: [
-            { src: '/image/item_list_powernet_onepiece_white.jpg', alt: '화이트' },
-            { src: '/image/item_list_powernet_onepiece_black.jpg', alt: '블랙' },
+            { src: './image/item_list_powernet_onepiece_white.jpg', alt: '화이트' },
+            { src: './image/item_list_powernet_onepiece_black.jpg', alt: '블랙' },
         ],
         sizes: ['WS(W85)', 'WM(W90)', 'WL(W95)'],
     },
@@ -124,10 +130,10 @@ const products = [
         gender: '공용',
         name: '테니스 Drywave 클럽매치 자카드 카라티',
         price: '99,900원',
-        image: '/image/item_list_drywave_tshirt_black.jpg',
+        image: './image/item_list_drywave_tshirt_black.jpg',
         colors: [
-            { src: '/image/item_list_drywave_tshirt_black.jpg', alt: '블랙' },
-            { src: '/image/item_list_drywave_tshirt_white.jpg', alt: '화이트' },
+            { src: './image/item_list_drywave_tshirt_black.jpg', alt: '블랙' },
+            { src: './image/item_list_drywave_tshirt_white.jpg', alt: '화이트' },
         ],
         sizes: ['M(085)', 'L(090)', 'XL(095)', '2XL(100)'],
     },
@@ -136,10 +142,10 @@ const products = [
         gender: '공용',
         name: '테니스 Drywave 클럽매치 자카드 카라티',
         price: '99,900원',
-        image: '/image/item_list_drywave_tshirt_white.jpg',
+        image: './image/item_list_drywave_tshirt_white.jpg',
         colors: [
-            { src: '/image/item_list_drywave_tshirt_white.jpg', alt: '화이트' },
-            { src: '/image/item_list_drywave_tshirt_black.jpg', alt: '블랙' },
+            { src: './image/item_list_drywave_tshirt_white.jpg', alt: '화이트' },
+            { src: './image/item_list_drywave_tshirt_black.jpg', alt: '블랙' },
         ],
         sizes: ['M(085)', 'L(090)', 'XL(095)', '2XL(100)'],
     },
@@ -148,11 +154,11 @@ const products = [
         gender: '여성',
         name: '테니스 여성 Drywave 클럽매치 자카드 카라티',
         price: '109,000원',
-        image: '/image/item_list_drywave_tshirt_woman_sora.jpg',
+        image: './image/item_list_drywave_tshirt_woman_sora.jpg',
         colors: [
-            { src: '/image/item_list_drywave_tshirt_woman_sora.jpg', alt: '소라' },
-            { src: '/image/item_list_drywave_tshirt_black.jpg', alt: '블랙' },
-            { src: '/image/item_list_drywave_tshirt_white.jpg', alt: '화이트' },
+            { src: './image/item_list_drywave_tshirt_woman_sora.jpg', alt: '소라' },
+            { src: './image/item_list_drywave_tshirt_black.jpg', alt: '블랙' },
+            { src: './image/item_list_drywave_tshirt_white.jpg', alt: '화이트' },
         ],
         sizes: ['WS(W75)', 'WM(W80)', 'WL(W85)'],
     },
@@ -161,11 +167,11 @@ const products = [
         gender: '여성',
         name: '테니스 CASA 플리츠 스커트',
         price: '109,000원',
-        image: '/image/item_list_casa_skirt_sora.jpg',
+        image: './image/item_list_casa_skirt_sora.jpg',
         colors: [
-            { src: '/image/item_list_casa_skirt_sora.jpg', alt: '소라' },
-            { src: '/image/item_list_casa_skirt_white.jpg', alt: '화이트' },
-            { src: '/image/item_list_casa_skirt_navy.jpg', alt: '네이비' },
+            { src: './image/item_list_casa_skirt_sora.jpg', alt: '소라' },
+            { src: './image/item_list_casa_skirt_white.jpg', alt: '화이트' },
+            { src: './image/item_list_casa_skirt_navy.jpg', alt: '네이비' },
         ],
         sizes: ['WS(W75)', 'WM(W80)', 'WL(W85)'],
     },
@@ -174,11 +180,11 @@ const products = [
         gender: '여성',
         name: '테니스 CASA 플리츠 스커트',
         price: '109,000원',
-        image: '/image/item_list_casa_skirt_white.jpg',
+        image: './image/item_list_casa_skirt_white.jpg',
         colors: [
-            { src: '/image/item_list_casa_skirt_white.jpg', alt: '화이트' },
-            { src: '/image/item_list_casa_skirt_navy.jpg', alt: '네이비' },
-            { src: '/image/item_list_casa_skirt_sora.jpg', alt: '소라' },
+            { src: './image/item_list_casa_skirt_white.jpg', alt: '화이트' },
+            { src: './image/item_list_casa_skirt_navy.jpg', alt: '네이비' },
+            { src: './image/item_list_casa_skirt_sora.jpg', alt: '소라' },
         ],
         sizes: ['WS(W75)', 'WM(W80)', 'WL(W85)'],
     },
@@ -187,11 +193,11 @@ const products = [
         gender: '여성',
         name: '테니스 CASA 플리츠 스커트',
         price: '109,000원',
-        image: '/image/item_list_casa_skirt_navy.jpg',
+        image: './image/item_list_casa_skirt_navy.jpg',
         colors: [
-            { src: '/image/item_list_casa_skirt_navy.jpg', alt: '네이비' },
-            { src: '/image/item_list_casa_skirt_white.jpg', alt: '화이트' },
-            { src: '/image/item_list_casa_skirt_sora.jpg', alt: '소라' },
+            { src: './image/item_list_casa_skirt_navy.jpg', alt: '네이비' },
+            { src: './image/item_list_casa_skirt_white.jpg', alt: '화이트' },
+            { src: './image/item_list_casa_skirt_sora.jpg', alt: '소라' },
         ],
         sizes: ['WS(W75)', 'WM(W80)', 'WL(W85)'],
     },
@@ -200,10 +206,10 @@ const products = [
         gender: '여성',
         name: '테니스 크롭 카라 탱크탑',
         price: '79,900원',
-        image: '/image/item_list_crop_tanktop_white.jpg',
+        image: './image/item_list_crop_tanktop_white.jpg',
         colors: [
-            { src: '/image/item_list_crop_tanktop_white.jpg', alt: '화이트' },
-            { src: '/image/item_list_crop_tanktop_pink.jpg', alt: '핑크' },
+            { src: './image/item_list_crop_tanktop_white.jpg', alt: '화이트' },
+            { src: './image/item_list_crop_tanktop_pink.jpg', alt: '핑크' },
         ],
         sizes: ['WS(W85)', 'WM(W90)', 'WL(W95)'],
     },
@@ -212,10 +218,10 @@ const products = [
         gender: '여성',
         name: '테니스 크롭 카라 탱크탑',
         price: '79,900원',
-        image: '/image/item_list_crop_tanktop_pink.jpg',
+        image: './image/item_list_crop_tanktop_pink.jpg',
         colors: [
-            { src: '/image/item_list_crop_tanktop_pink.jpg', alt: '핑크' },
-            { src: '/image/item_list_crop_tanktop_white.jpg', alt: '화이트' },
+            { src: './image/item_list_crop_tanktop_pink.jpg', alt: '핑크' },
+            { src: './image/item_list_crop_tanktop_white.jpg', alt: '화이트' },
         ],
         sizes: ['WS(W85)', 'WM(W90)', 'WL(W95)'],
     },
@@ -224,10 +230,10 @@ const products = [
         gender: '여성',
         name: '테니스 파워넷 게더 스커트',
         price: '109,000원',
-        image: '/image/item_list_powernet_skirt_navy.jpg',
+        image: './image/item_list_powernet_skirt_navy.jpg',
         colors: [
-            { src: '/image/item_list_powernet_skirt_navy.jpg', alt: '네이비' },
-            { src: '/image/item_list_powernet_skirt_pink.jpg', alt: '핑크' },
+            { src: './image/item_list_powernet_skirt_navy.jpg', alt: '네이비' },
+            { src: './image/item_list_powernet_skirt_pink.jpg', alt: '핑크' },
         ],
         sizes: ['WS(W75)', 'WM(W80)', 'WL(W85)'],
     },
@@ -236,10 +242,10 @@ const products = [
         gender: '여성',
         name: '테니스 파워넷 게더 스커트',
         price: '109,000원',
-        image: '/image/item_list_powernet_skirt_pink.jpg',
+        image: './image/item_list_powernet_skirt_pink.jpg',
         colors: [
-            { src: '/image/item_list_powernet_skirt_pink.jpg', alt: '핑크' },
-            { src: '/image/item_list_powernet_skirt_navy.jpg', alt: '네이비' },
+            { src: './image/item_list_powernet_skirt_pink.jpg', alt: '핑크' },
+            { src: './image/item_list_powernet_skirt_navy.jpg', alt: '네이비' },
         ],
         sizes: ['WS(W75)', 'WM(W80)', 'WL(W85)'],
     },
@@ -269,25 +275,23 @@ function ProductCard({ product, onClick }) {
                     <img src={mainImage} alt="상품 이미지" />
 
                     {/* QUICK ADD 오버레이 */}
-                    {hovered && (
-                        <div className="quick_add">
-                            <div className="quick_add_header">
-                                <span>QUICK ADD</span>
-                                <i className="fa-solid fa-cart-plus" />
-                            </div>
-                            <div className="quick_add_size">
-                                {product.sizes.map((size) => (
-                                    <a
-                                        key={size}
-                                        href="#"
-                                        onClick={(e) => e.stopPropagation()}
-                                    >
-                                        {size}
-                                    </a>
-                                ))}
-                            </div>
+                    <div className={`quick_add${hovered ? ' visible' : ''}`}>
+                        <div className="quick_add_header">
+                            <span>QUICK ADD</span>
+                            <i className="fa-solid fa-cart-plus" />
                         </div>
-                    )}
+                        <div className="quick_add_size">
+                            {product.sizes.map((size) => (
+                                <a
+                                    key={size}
+                                    href="#"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    {size}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
                 {/* 색상 스와치 */}

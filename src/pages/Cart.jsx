@@ -90,12 +90,11 @@ function OptionPanel({ item, onConfirm, onCancel }) {
 }
 
 function Cart({ items, onDelete, onToggleCheck, onUpdateItem }) {
-    const [allChecked, setAllChecked] = useState(true);
+    const allChecked = items.length > 0 && items.every(item => item.checked);
     const [openPanelId, setOpenPanelId] = useState(null); // 현재 열려있는 패널의 item id
 
     const handleAllCheck = () => {
         const next = !allChecked;
-        setAllChecked(next);
         items.forEach(item => {
             if (item.checked !== next) onToggleCheck(item.id);
         });

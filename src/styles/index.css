@@ -79,23 +79,40 @@ a {
 /* ==========================================================================
    2-2. header
    ========================================================================== */
-
-header {
-    position: absolute;
-    top: 30px;
-    left: 0;
+.header-wrapper {
+    position: sticky; /* 혹은 fixed */
+    top: 0;
     width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    /* ❌ 기존의 justify-content: space-between; 을 과감히 삭제합니다!
-       대신 아래의 relative 기준점과 좌우 정렬을 정석대로 잡아줍니다. */
-    position: relative;
-    justify-content: flex-start; /* 왼쪽부터 차례대로 배치 */
-    align-items: center;
-    background-color: unset;
-    padding: 10px 40px;
     z-index: 1000;
 }
+
+.event {
+    display: flex;
+    justify-content: center;
+    /* 고정 높이 대신 padding 등으로 유연하게 설정 */
+}
+
+
+/*header {*/
+/*    position: absolute;*/
+/*    top: 30px;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    box-sizing: border-box;*/
+/*    display: flex;*/
+/*    !* ❌ 기존의 justify-content: space-between; 을 과감히 삭제합니다!*/
+/*       대신 아래의 relative 기준점과 좌우 정렬을 정석대로 잡아줍니다. *!*/
+/*    position: relative;*/
+/*    justify-content: flex-start; !* 왼쪽부터 차례대로 배치 *!*/
+/*    align-items: center;*/
+/*    background-color: unset;*/
+/*    padding: 10px 40px;*/
+/*    z-index: 1000;*/
+/*}*/
+
+/*header.no-event {*/
+/*    top: 0 !important;*/
+/*}*/
 
 header > .home_btn {
     display: flex;

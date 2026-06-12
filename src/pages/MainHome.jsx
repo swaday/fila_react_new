@@ -125,6 +125,7 @@ function MainHome({ setCurrentPage }) {
         };
     }, []);
 
+
     return (
         <div id="container">
 

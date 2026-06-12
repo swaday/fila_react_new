@@ -244,7 +244,7 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
             {/* 메인 상단: 상품 기본 정보 및 구매 영역 */}
             <section id="main">
                 <div>
-                    <img src="/image/detail_shorts1.webp" alt="상품 메인 이미지" />
+                    <img src="./image/detail_shorts1.webp" alt="상품 메인 이미지" />
                 </div>
                 <div>
                     <div className="information">
@@ -264,9 +264,9 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
 
                         <div className="group">
                             <ul>
-                                <li><a href="#" className="active" onClick={(e) => e.preventDefault()}><img src="/image/detail_shorts1.jpg" alt="썸네일 1" /></a></li>
-                                <li><a href="#" onClick={(e) => e.preventDefault()}><img src="/image/detail_shorts2.webp" alt="썸네일 2" /></a></li>
-                                <li><a href="#" onClick={(e) => e.preventDefault()}><img src="/image/detail_shorts3.webp" alt="썸네일 3" /></a></li>
+                                <li><a href="#" className="active" onClick={(e) => e.preventDefault()}><img src="./image/detail_shorts1.jpg" alt="썸네일 1" /></a></li>
+                                <li><a href="#" onClick={(e) => e.preventDefault()}><img src="./image/detail_shorts2.webp" alt="썸네일 2" /></a></li>
+                                <li><a href="#" onClick={(e) => e.preventDefault()}><img src="./image/detail_shorts3.webp" alt="썸네일 3" /></a></li>
                             </ul>
                         </div>
 
@@ -304,7 +304,7 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
                                     name: '테니스 Coldwave+ 베이직 7인치 쇼츠',
                                     price: 79900,
                                     option: selectedSize,
-                                    image: '/image/detail_shorts1.webp',
+                                    image: './image/detail_shorts1.webp',
                                     quantity: 1,
                                     checked: true,
                                 });
@@ -322,10 +322,10 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
             <section id="spec">
                 <div className="item_detail">
                     <div className="image_container">
-                        <img src="/image/checkpoint1.webp" alt="상세 이미지 1" />
-                        <img src="/image/checkpoint2.webp" alt="상세 이미지 2" />
-                        <img src="/image/checkpoint4.webp" alt="상세 이미지 3" />
-                        <img src="/image/checkpoint3.webp" alt="상세 이미지 4" />
+                        <img src="./image/checkpoint1.webp" alt="상세 이미지 1" />
+                        <img src="./image/checkpoint2.webp" alt="상세 이미지 2" />
+                        <img src="./image/checkpoint4.webp" alt="상세 이미지 3" />
+                        <img src="./image/checkpoint3.webp" alt="상세 이미지 4" />
                     </div>
 
                     <div className="information">
@@ -446,10 +446,10 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
                 </div>
                 <div className="checkpoint_card_container">
                     {[
-                        { img: '/image/checkpoint1.webp', title: 'CLODWAVE+ 냉감 기능성 소재', desc: '냉감 기능의 COLDWAVE+ 소재를 적용해 착용 즉시 시원한 촉감을 제공하며, 여름철 운동 시 열감과 불쾌감을 효과적으로 줄여줍니다.' },
-                        { img: '/image/checkpoint2.webp', title: '사이드 트임 디테일', desc: '양쪽 사이드 트임 디테일이 다리 움직임을 자연스럽게 도와주어 역동적인 플레이에도 불편함 없이 퍼포먼스를 지원합니다.' },
-                        { img: '/image/checkpoint3.webp', title: '7-스트라이프 라벨 포인트', desc: '휠라 아카이브의 상징인 7-스트라이프를 라벨 디테일에 적용해 브랜드 아이덴티티를 강조했습니다. 심플한 실루엣 속에서도 클래식한 감성을 전달하는 고급스러운 포인트가 됩니다.' },
-                        { img: '/image/checkpoint4.webp', title: '스트링 조절 설계', desc: '허리 오비 스트링을 앞·뒤 어디서나 조절할 수 있도록 설계해 착용 편의성을 높이고, 체형에 맞는 안정적인 핏을 완성합니다.' },
+                        { img: './image/checkpoint1.webp', title: 'CLODWAVE+ 냉감 기능성 소재', desc: '냉감 기능의 COLDWAVE+ 소재를 적용해 착용 즉시 시원한 촉감을 제공하며, 여름철 운동 시 열감과 불쾌감을 효과적으로 줄여줍니다.' },
+                        { img: './image/checkpoint2.webp', title: '사이드 트임 디테일', desc: '양쪽 사이드 트임 디테일이 다리 움직임을 자연스럽게 도와주어 역동적인 플레이에도 불편함 없이 퍼포먼스를 지원합니다.' },
+                        { img: './image/checkpoint3.webp', title: '7-스트라이프 라벨 포인트', desc: '휠라 아카이브의 상징인 7-스트라이프를 라벨 디테일에 적용해 브랜드 아이덴티티를 강조했습니다. 심플한 실루엣 속에서도 클래식한 감성을 전달하는 고급스러운 포인트가 됩니다.' },
+                        { img: './image/checkpoint4.webp', title: '스트링 조절 설계', desc: '허리 오비 스트링을 앞·뒤 어디서나 조절할 수 있도록 설계해 착용 편의성을 높이고, 체형에 맞는 안정적인 핏을 완성합니다.' },
                     ].map(({ img, title, desc }) => (
                         <div className="card_container" key={title}>
                             <div className="card">
@@ -476,7 +476,7 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
                 </div>
                 <div className="modelcut_image">
                     {['modelcut1.jpg', 'modelcut2.jpg', 'modelcut3.jpg', 'modelcut4.jpg'].map((img, i) => (
-                        <img key={i} src={`/image/${img}`} alt={`모델컷 ${i + 1}`} />
+                        <img key={i} src={`./image/${img}`} alt={`모델컷 ${i + 1}`} />
                     ))}
                 </div>
             </section>
@@ -496,7 +496,7 @@ function ProductDetail({ setCurrentPage, onAddToCart }) {
                     <div className="photo_review_img_container">
                         {[1, 2, 3].map((i) => (
                             <div className="review_item" key={i}>
-                                <img src="/image/item_list_coldwave_basic_shorts_white.jpg" alt="" />
+                                <img src="./image/item_list_coldwave_basic_shorts_white.jpg" alt="" />
                             </div>
                         ))}
                     </div>

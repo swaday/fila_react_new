@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 
-function Header({ setCurrentPage, cartCount }) {
+function Header({ setCurrentPage, cartCount, isEventVisible }) {
     const [activeMenu, setActiveMenu] = useState(null);
 
     return (
-        <header onMouseLeave={() => setActiveMenu(null)}>
+        <header
+            onMouseLeave={() => setActiveMenu(null)}
+            className={!isEventVisible ? 'no-event' : ''}
+        >
             <a className="home_btn" href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>
-                <img src="/image/logo/logo.svg" alt="헤더로고" />
+                <img src="./image/logo/logo.svg" alt="헤더로고" />
             </a>
 
             <ul className="main_menu">

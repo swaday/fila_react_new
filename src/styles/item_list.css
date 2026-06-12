@@ -368,12 +368,16 @@ header > .main_menu > li:hover .submenu_container {
     box-sizing: border-box;
     padding: 15px;
     z-index: 10;
-    transform: translate(-50%, 120%);
-    transition: transform 0.3s ease-out;
+    opacity: 0;
+    transform: translate(-50%, 10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
 }
 
-#item_list .item_list_container .item_list_detail .image_box:hover .quick_add {
+#item_list .item_list_container .item_list_detail .image_box .quick_add.visible {
+    opacity: 1;
     transform: translate(-50%, 0);
+    pointer-events: auto;
 }
 
 #item_list .item_list_container .item_list_detail .image_box .quick_add .quick_add_header {
